@@ -1,2 +1,2 @@
 # platinum_genomes
-Notes on bioinfo tools for building high-quality, Platinum genomes
+Testing bioinfo tools traditionally used in pipelines for building high-quality, Platinum genomes
