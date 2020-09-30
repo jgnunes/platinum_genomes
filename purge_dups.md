@@ -31,7 +31,7 @@ For this tutorial, we will be using the genome assembly of the butterfly species
 * [m64016_191223_193312.ccs.bam](https://darwin.cog.sanger.ac.uk/insects/Pieris_rapae/ilPieRapa1/genomic_data/pacbio/m64016_191223_193312.ccs.bam): file containing the raw HiFi reads. It's [compatible](https://pacbiofileformats.readthedocs.io/en/3.0/BAM.html) with the traditional BAM extension used for representing reads mapping, however in this case it represents only the raw reads (no mapping). According to [PacBio](https://www.pacb.com/wp-content/uploads/3_DavidAlexander_SmrtDevMeeting.pdf), it can be thought as a better FASTQ format. 
     
 ## 3. Creating an artifially duplicated assembly  
-* Since the original dataset has already had the duplicated regions purged, we first need to create an artificially duplicated assembly by merging the *primary* and *haplotigs*: 
+* Since the original dataset has already had the duplicated regions purged, we first need to create an artificially duplicated assembly by merging the *primary assembly* and *haplotigs*: 
 
 ```console  
 cat 20200120.hicanu.purge.prim.fasta.gz 20200120.hicanu.purge.htig.fasta.gz > 20200120.hicanu.unpurged.fasta.gz
@@ -39,17 +39,16 @@ cat 20200120.hicanu.purge.prim.fasta.gz 20200120.hicanu.purge.htig.fasta.gz > 20
 
 Then, the file created (20200120.hicanu.unpurged.fasta.gz) has, for every heterozygous region, contigs representing both haplotypes. This is the file we will be using from now on to test purge_dups. 
 
-## 4. Converting HiFi reads to FASTQ format  
-Since purge_dups is not compatible with the BAM format, we need to convert our raw HiFi reads from BAM to FASTQ format. We will do it using the [*BAM2fastx*](https://github.com/PacificBiosciences/bam2fastx) launched by PacBio:  
+## 4. Converting HiFi reads to FASTA format  
+Since purge_dups is not compatible with the BAM format, we need to convert our raw HiFi reads from BAM to FASTQ format. We will do it using the [*BAM2fastx*](https://github.com/PacificBiosciences/bam2fastx) tools by PacBio:  
 ```console  
-bam2fastq -o m64016_191223_193312.ccs m64016_191223_193312.ccs.bam
+bam2fasta -o m64016_191223_193312.ccs m64016_191223_193312.ccs.bam
 ```
 
-## 5. Setting up a configuration file  
-Before running purge_dups we need to create a configuration file, containing all the information that purge_dups needs to run the purging:  
-
+## 5. Run minimap2 to align pacbio data and generate paf files  
+Then we align the PacBio HiFi reads against the duplicated assembly using the program *minimap2*:  
 ```console  
-./scripts/pd_config.py -l iHelSar1.pri -s 10x.fofn -n config.iHelSar1.PB.asm1.json ~/vgp/release/insects/iHelSar1/iHlSar1.PB.asm1/iHelSar1.PB.asm1.fa.gz pb.fofn
+~/joao_ferreira/platinum_genome_training/purge_dups/manual $ minimap2 -xmap-pb ../../input/20200120.hicanu.unpurged.fasta.gz ../../input/m64016_191223_193312.ccs.fasta.gz | gzip -c - > PieRapa.paf.gz
 ```  
 
 # Linux commands
