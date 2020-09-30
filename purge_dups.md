@@ -63,7 +63,7 @@ bioma@bioma-XPS-8300:~/joao_ferreira/platinum_genome_training/purge_dups/manual$
 bioma@bioma-XPS-8300:~/joao_ferreira/platinum_genome_training/purge_dups/manual$ /home/bioma/anaconda3/envs/purge_dups/purge_dups/bin/calcuts PB.stat > cutoffs 2>calcults.log
 ```  
 
-## Verifying the cutoffs 
+## 8. Verifying the cutoffs 
 ```console
 bioma@bioma-XPS-8300:~/joao_ferreira/platinum_genome_training/purge_dups/manual$ /home/bioma/anaconda3/envs/purge_dups/purge_dups/scripts/hist_plot.py PB.stat hist_depth
 ```
