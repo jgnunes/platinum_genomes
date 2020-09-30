@@ -39,11 +39,17 @@ cat 20200120.hicanu.purge.prim.fasta.gz 20200120.hicanu.purge.htig.fasta.gz > 20
 
 Then, the file created (20200120.hicanu.unpurged.fasta.gz) has, for every heterozygous region, contigs representing both haplotypes. This is the file we will be using from now on to test purge_dups. 
 
-## 4. Setting up a configuration file  
+## 4. Converting HiFi reads to FASTQ format  
+Since purge_dups is not compatible with the BAM format, we need to convert our raw HiFi reads from BAM to FASTQ format. We will do it using the [*BAM2fastx*](https://github.com/PacificBiosciences/bam2fastx) launched by PacBio:  
+```console  
+bam2fastq -o m64016_191223_193312.ccs m64016_191223_193312.ccs.bam
+```
+
+## 5. Setting up a configuration file  
 Before running purge_dups we need to create a configuration file, containing all the information that purge_dups needs to run the purging:  
 
-```  
+```console  
 ./scripts/pd_config.py -l iHelSar1.pri -s 10x.fofn -n config.iHelSar1.PB.asm1.json ~/vgp/release/insects/iHelSar1/iHlSar1.PB.asm1/iHelSar1.PB.asm1.fa.gz pb.fofn
-```
+```  
 
 # Linux commands
