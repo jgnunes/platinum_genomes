@@ -48,7 +48,7 @@ bam2fasta -o m64016_191223_193312.ccs m64016_191223_193312.ccs.bam
 ## 5. Run minimap2 to align pacbio data and generate paf files  
 Then we align the PacBio HiFi reads against the duplicated assembly using the program *minimap2*:  
 ```console  
-~/joao_ferreira/platinum_genome_training/purge_dups/manual $ minimap2 -xmap-pb ../../input/20200120.hicanu.unpurged.fasta.gz ../../input/m64016_191223_193312.ccs.fasta.gz | gzip -c - > PieRapa.paf.gz
+bioma@bioma-XPS-8300:~/joao_ferreira/platinum_genome_training/purge_dups/manual$ minimap2 -xmap-pb ../../input/20200120.hicanu.unpurged.fasta.gz ../../input/m64016_191223_193312.ccs.fasta.gz | gzip -c - > PieRapa.paf.gz
 ```  
 
 # Linux commands
