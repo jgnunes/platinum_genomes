@@ -51,4 +51,11 @@ Then we align the PacBio HiFi reads against the duplicated assembly using the pr
 bioma@bioma-XPS-8300:~/joao_ferreira/platinum_genome_training/purge_dups/manual$ minimap2 -xmap-pb ../../input/20200120.hicanu.unpurged.fasta.gz ../../input/m64016_191223_193312.ccs.fasta.gz | gzip -c - > PieRapa.paf.gz
 ```  
 
+## 6. 
+Then once the alignment is done, we will calculate the per base coverage and coverage histogram from it, using the function *pbcstat* that comes with *purge_dups*:
+
+```console
+bioma@bioma-XPS-8300:~/joao_ferreira/platinum_genome_training/purge_dups/manual$ /home/bioma/anaconda3/envs/purge_dups/purge_dups/bin/pbcstat PieRapa.paf.gz
+```  
+
 # Linux commands
