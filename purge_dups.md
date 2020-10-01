@@ -100,7 +100,7 @@ I.e, the expected coverage is 59X for an haploid assembly. Since we known from o
 In order to adjust our cutoffs, we will run the *calcuts* function again, but now with different options:  
 
 ```console  
-bioma@bioma-XPS-8300:~/joao_ferreira/platinum_genome_training/purge_dups/manual$ /home/bioma/anaconda3/envs/purge_dups/purge_dups/bin/calcuts -l5 -m45 -u63 PC.stat > cutoffs_adjusted
+bioma@bioma-XPS-8300:~/joao_ferreira/platinum_genome_training/purge_dups/manual$ /home/bioma/anaconda3/envs/purge_dups/purge_dups/bin/calcuts -l5 -m45 -u63 P.stat > cutoffs_adjusted
 ```  
 
 Notice that we have only changed the position of the middle cutoff. We are now placing it at 45X coverage, because it represents the approximate middle point between the haploid coverage (59X, here rounded to 60X for easiness reasons) and the diploid coverage (30X):  
@@ -113,11 +113,23 @@ Now we will split our assembly into contigs by cutting at blocks of 'N's:
 bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual $ /home/bioma/anaconda3/envs/purge_dups/purge_dups/bin/split_fa ../../input/20200120.hicanu.unpurged.fasta > 20200120.hicanu.unpurged.split
 ```  
 
-## Do a sel-self alignment  
+## 11. Do a sel-self alignment  
 Then we will use minimap2 to align the assembly contigs against themselves:  
 
 ```console  
 bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual $ minimap2 -xasm5 -DP 20200120.hicanu.unpurged.split 20200120.hicanu.unpurged.split | gzip -c - > 20200120.hicanu.unpurged.split.self.paf.gz
+```  
+
+## 12. Purge haplotigs and overlaps  
+Then we will use the function *purge_dups* and the information of the read depth per base in the original assembly (*PB.base.cov*), the self-self alignment of contigs of the original assembly and the read depth cutoffs set manually to separate the unproperly duplicated regions from the original assembly:
+
+```  
+bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual $ /home/bioma/anaconda3/envs/purge_dups/purge_dups/bin/purge_dups -2 -T cutoffs_adjusted -c PB.base.cov 20200120.hicanu.unpurged.split.self.paf.gz > dups.bed 2> purge_dups.log
+```  
+
+## 13. Retrieving the primary assembly and haplotig sequences from the original assembly  
+```  
+bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual $ /home/bioma/anaconda3/envs/purge_dups/purge_dups/bin/get_seqs dups.bed 20200120.hicanu.unpurged.split
 ```
 
 # Linux commands  
