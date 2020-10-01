@@ -103,7 +103,9 @@ In order to adjust our cutoffs, we will run the *calcuts* function again, but no
 bioma@bioma-XPS-8300:~/joao_ferreira/platinum_genome_training/purge_dups/manual$ /home/bioma/anaconda3/envs/purge_dups/purge_dups/bin/calcuts -l5 -m45 -u63 PC.stat > cutoffs_adjusted
 ```  
 
-Notice that we have only changed the position of the middle cutoff. We are now placing it at 45X coverage, because it represents the approximate middle point between the haploid coverage (59X, here rounded to 60X for easiness reasons) and the diploid coverage (30X). 
+Notice that we have only changed the position of the middle cutoff. We are now placing it at 45X coverage, because it represents the approximate middle point between the haploid coverage (59X, here rounded to 60X for easiness reasons) and the diploid coverage (30X):  
+
+<img src="https://user-images.githubusercontent.com/22843614/94849612-0f674480-03fc-11eb-8afe-ba881851d2c3.png" widt=90%></img>
 
 # Linux commands  
 
