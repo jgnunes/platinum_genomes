@@ -96,5 +96,14 @@ expected coverage = 14576396674/246000000 = 59X
 I.e, the expected coverage is 59X for an haploid assembly. Since we known from our plot that our peak is around 30X, it likely represents diploid sequences. This is exactly what expected, since our assembly was obtained after merging the two haploid assemblies. However, we now know that our middle cutoff needs to be shifted right, in order to place our peak mostly to its left (remember, the left peak represents the 0.5X depth). 
 
 
+## 9. Adjusting cutoffs  
+In order to adjust our cutoffs, we will run the *calcuts* function again, but now with different options:  
+
+```console  
+bioma@bioma-XPS-8300:~/joao_ferreira/platinum_genome_training/purge_dups/manual$ /home/bioma/anaconda3/envs/purge_dups/purge_dups/bin/calcuts -l5 -m45 -u63 PC.stat > cutoffs_adjusted
+```  
+
+Notice that we have only changed the position of the middle cutoff. We are now placing it at 45X coverage, because it represents the approximate middle point between the haploid coverage (59X, here rounded to 60X for easiness reasons) and the diploid coverage (30X). 
+
 # Linux commands  
 
