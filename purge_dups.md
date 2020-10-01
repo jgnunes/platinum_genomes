@@ -58,15 +58,43 @@ Then once the alignment is done, we will calculate the per base depth (PB.base.c
 bioma@bioma-XPS-8300:~/joao_ferreira/platinum_genome_training/purge_dups/manual$ /home/bioma/anaconda3/envs/purge_dups/purge_dups/bin/pbcstat PieRapa.paf.gz
 ```  
 
-## 7. Generate cutoff
+## 7. Generate cutoff  
+Once we have the depth histogram, containing distribution of each value of read depth coverage, we can use the *calcuts* function (that comes with *purge_dups*) to automatically set three cutoffs:  
+1. A low cutoff that will be used to identify contigs that are likely to be assembly artefacts  
+2. A medium cutoff that will be used to separate diploid and haploid coverage depths  
+3. A high cutoff that will be used to identify contigs that are likely to be collapsed repeats 
+
 ```console
 bioma@bioma-XPS-8300:~/joao_ferreira/platinum_genome_training/purge_dups/manual$ /home/bioma/anaconda3/envs/purge_dups/purge_dups/bin/calcuts PB.stat > cutoffs 2>calcults.log
 ```  
 
-## 8. Verifying the cutoffs 
-```console
-bioma@bioma-XPS-8300:~/joao_ferreira/platinum_genome_training/purge_dups/manual$ /home/bioma/anaconda3/envs/purge_dups/purge_dups/scripts/hist_plot.py PB.stat hist_depth
+## 8. Inspect automatic cutoff  
+It is good practice to inspect the cutoffs that were automatically defined by *purge_dups*. You can do that by analyzing the plot generated with the script *hist_plot.py*:  
+
+```console  
+bioma@bioma-XPS-8300:~/joao_ferreira/platinum_genome_training/purge_dups/manual$ /home/bioma/anaconda3/envs/purge_dups/purge_dups/scripts/hist_plot.py -c cutoffs PB.stat PB.cov.png
 ```
+
+<img src="https://user-images.githubusercontent.com/22843614/94845666-623dfd80-03f6-11eb-8850-6e175bea773b.png" width=90%></img>  
+
+In an assembly that has both haploid and diploid sequences, we should have a peak with higher coverage and another peak with approximately 50% read-depth as the first, representing the diploid sequences (since half of the reads will map to one haplotype and the other half to the other haplotype). However, our plot only seems to have one peak, and the question that remains is if this peak represents an assembly that is entirely diploid or entirenly haploid. This is not very relevant for us to place the low and high cutoffs, but it is for the middle cutoff, since it should separate the haploid and diploid depths. In other words, the middle cutoff should be placed so that what is to its left represents the diploid peak, that has an 0.5X depth, and what is to its right represents the haploid peak, that has an 1.0X depth. 
+
+One way to decide if our only peak represents the diploid or haploid peak is to compare its coverage with the expected coverage, by dividing the number of bases that were sequenced by the size of *Pieris rapae*'s genome. We can check the number of sequenced bases by inspecting the PacBio FASTA sequence with the command:  
+
+```console  
+bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/input $ zcat m64016_191223_193312.ccs.fasta.gz | grep -v ">" | awk '{x+=length($0)}END{print x}'
+```
+Which returns 14576396674 bases, i.e., approximately 14 billion bases!  
+
+We can find out the size of *Pieris rapae*'s genome by looking at previous genome papers from this species, like [this](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5247789/), which gives us a genome size of 246 Mbp for a haploid assembly. 
+
+Then we divide the number of sequenced bases by the size of the genome:  
+```  
+expected coverage = 14576396674/246000000 = 59X
+```
+
+I.e, the expected coverage is 59X for an haploid assembly. Since we known from our plot that our peak is around 30X, it likely represents diploid sequences. This is exactly what expected, since our assembly was obtained after merging the two haploid assemblies. However, we now know that our middle cutoff needs to be shifted right, in order to place our peak mostly to its left (remember, the left peak represents the 0.5X depth). 
+
 
 # Linux commands  
 
