@@ -107,5 +107,18 @@ Notice that we have only changed the position of the middle cutoff. We are now p
 
 <img src="https://user-images.githubusercontent.com/22843614/94849612-0f674480-03fc-11eb-8afe-ba881851d2c3.png" widt=90%></img>
 
+## 10. Split assembly  
+Now we will split our assembly into contigs by cutting at blocks of 'N's:  
+```console  
+bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual $ /home/bioma/anaconda3/envs/purge_dups/purge_dups/bin/split_fa ../../input/20200120.hicanu.unpurged.fasta > 20200120.hicanu.unpurged.split
+```  
+
+## Do a sel-self alignment  
+Then we will use minimap2 to align the assembly contigs against themselves:  
+
+```console  
+bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual $ minimap2 -xasm5 -DP 20200120.hicanu.unpurged.split 20200120.hicanu.unpurged.split | gzip -c - > 20200120.hicanu.unpurged.split.self.paf.gz
+```
+
 # Linux commands  
 
