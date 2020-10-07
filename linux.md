@@ -140,6 +140,6 @@ The idea is that whenever you start typing a path, if you hit the Tab key on you
 # 3. File manipulation <a name="file-manipulation"></a>  
 
 # Additional references <a name="additional-references"></a>  
-This tutorial was inspired by the great Ryan Chadwick's webpage on [Linux](https://ryanstutorials.net/linuxtutorial/). If you want to deepen your understanding on Linux, I highly recommend you to browse through Ryan's tutorial, which includes exercises and some other interesting topics not coverede here for limitation of time.
+This tutorial was inspired by the great [Ryan Chadwick's webpage](https://ryanstutorials.net/linuxtutorial/) on Linux. If you want to deepen your understanding on Linux, I highly recommend you to browse through Ryan's tutorial, which includes exercises and some other interesting topics not coverede here due to time constraints.
 
 
