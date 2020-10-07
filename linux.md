@@ -1,8 +1,11 @@
 # Table of contents  
 1. [Basic concepts](#basic-concepts)  
     1.1 [The terminal](#the-terminal)  
-    1.2 [The prompt](#the-prompt)
-2. [Navigating the system](#navigating-the-system)
+    1.2 [The prompt](#the-prompt)  
+    1.3 [Running commands](#running-commands)  
+    1.4 [The shell](#the-shell)
+2. [Navigating the system](#navigating-the-system)  
+    2.1 [Where are we?](#where-are-we?)
 
 
 # 1. Basic concepts <a name="basic-concepts"></a>  
