@@ -89,6 +89,8 @@ username@bash:~$ cd /home/username/Documents
 username@bash:~$ pwd  
 /home/username/Documents
 ``` 
+
+## 2.4 Shortcuts
 If you want to go back to the previous (parent) directory, you don't need to specify its complete path. The shortcut **..** will do that for you:  
 ```console  
 username@bash:~$ cd ..  
@@ -110,10 +112,16 @@ username@bash:~$ pwd
 /home/username
 ```  
 
-Cool fact: the shortcuts **..** and **~** also work with other commands besides **cd**:  
+**Cool fact**: the shortcuts **..** and **~** also work with other commands besides **cd**:  
 ```console  
 username@bash:~$ ls ~  
 Documents public_html
-```
+```  
+
+## 2.5 The tab completion trick  
+Typing out long paths can be tedious and slow, without mentioning the chances of typing errors (typos). However, the command line have a powerfull mechanism to help us with that: it's called **tab completion**.  
+
+The idea is that whenever you start typing a path, if you hit the Tab key on your keyboard the command line will invoke an autocompletion action. It nothing happens, it means there are several possibilities for autocompletion. In that case you should 
+
 
 
