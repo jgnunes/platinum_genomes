@@ -29,5 +29,9 @@ The last element of the first line is the argument that is given to the command,
 
 Lines 2-4 show the output of the command. Don't worry about understanding it now, since we will discuss the command *ls* in more detail later. Also notice that not every command returns an output. Some just do their job quietly and only display a message if an error has occurred.  
 
-Finally, line 6 presents the user with the prompt again. That means the command execution is done and the terminal is ready to run another command.  
+Finally, line 5 presents the user with the prompt again. That means the command execution is done and the terminal is ready to run another command.  
+
+# The shell  
+Whenever we run a command in the terminal, the command is processed by a program called *shell*, which will interpret the command and send back the output to the terminal. There are various shells available but the most common one is called *bash*, which stands for Bourne again shell. Bash is the most popular flavour of shell in Linux systems, and it also is the default shell on macOS.  
+
 
