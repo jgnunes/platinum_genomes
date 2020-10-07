@@ -18,7 +18,7 @@ user@bash:~$
 
 This is called a *prompt* and it means the terminal is ready for you to execute a command.  
 
-## 1.3 Running commands  
+## 1.3 Running commands <a name="running-commands"></a>  
 When running a command, typically the command itself is the first thing you will type. After that you will type the arguments, which are the input information that will be fed into the command. Some commands also offer options to change its default behaviour. They are usually encoded by a dash (-) and placed before the arguments.  
 
 Let's check a real example:  
@@ -39,18 +39,18 @@ Lines 2-4 show the output of the command. Don't worry about understanding it now
 
 Finally, line 5 presents the user with the prompt again. That means the command execution is done and the terminal is ready to run another command.  
 
-## 1.4 The shell  
+## 1.4 The shell  <a name="the-shell"></a> 
 Whenever we run a command in the terminal, the command is processed by a program called *shell*, which will interpret the command and send back the output to the terminal. There are various shells available but the most common one is called *bash*, which stands for Bourne again shell. Bash is the most popular flavour of shell in Linux systems, and it also is the default shell on macOS. Over our course it is the shell we will be using.    
 
-# 2. Navigating the system  
-## 2.1 Where are we?  
+# 2. Navigating the system  <a name="navigating-the-system"></a> 
+## 2.1 Where are we?  <a name="where-are-we?"></a> 
 The command **pwd** stands for *Print Working Directory* and it will print the complete path to our current directory:  
 ```console  
 username@bash:~$ pwd  
 /home/username
 ```  
 
-## 2.2 What's in our current directory?  
+## 2.2 What's in our current directory?  <a name="what's-in-our-current-directory?"></a> 
 The command **ls** will print all files and folders located in our current directory:  
 ```console  
 username@bash:~$ ls  
@@ -82,7 +82,7 @@ username@bash:~$ man ls
 ```  
 The command will print pretty useful information, such as how to execute the command, what are the options available and the arguments required (if any). 
 
-## 2.3 Moving around  
+## 2.3 Moving around  <a name="moving-around"></a> 
 The command **cd** (which stands for *Change Directory*) allows us to move to another directory. Its syntax is straigh-forward since it only takes one argument, which is the target directory we want to move to:  
 ```console  
 username@bash:~$ cd Documents  
@@ -96,7 +96,7 @@ username@bash:~$ pwd
 /home/username/Documents
 ``` 
 
-## 2.4 Shortcuts
+## 2.4 Shortcuts <a name="shortcuts"></a> 
 If you want to go back to the previous (parent) directory, you don't need to specify its complete path. The shortcut **..** will do that for you:  
 ```console  
 username@bash:~$ cd ..  
@@ -124,14 +124,14 @@ username@bash:~$ ls ~
 Documents public_html
 ```  
 
-## 2.5 The tab completion trick  
+## 2.5 The tab completion trick <a name="the-tab-completion-trick"></a>  
 Typing out long paths can be tedious and slow, without mentioning the chances of typing errors (typos). However, the command line have a powerfull mechanism to help us with that: it's called **tab completion**.  
 
 The idea is that whenever you start typing a path, if you hit the Tab key on your keyboard the command line will invoke an autocompletion action. It nothing happens, it means there are several possibilities for autocompletion. In that case you should hit Tab again to show all the possibilites, continue typing and then hit Tab again to continue the autocompletion process. Try it yourself to seed the power of tab completion!
 
 # 3. File manipulation <a name="file-manipulation"></a>  
 
-# Additional references  
+# Additional references <a name="additional-references"></a>  
 This tutorial was inspired by the great Ryan Chadwick's webpage on [Linux](https://ryanstutorials.net/linuxtutorial/). If you want to deepen your understanding on Linux, I highly recommend you to browse through Ryan's tutorial, which includes exercises and some other interesting topics not coverede here for limitation of time.
 
 
