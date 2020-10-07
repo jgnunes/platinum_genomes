@@ -77,5 +77,43 @@ username@bash:~$ man ls
 The command will print pretty useful information, such as how to execute the command, what are the options available and the arguments required (if any). 
 
 ## 2.3 Moving around  
+The command **cd** (which stands for *Change Directory*) allows us to move to another directory. Its syntax is straigh-forward since it only takes one argument, which is the target directory we want to move to:  
+```console  
+username@bash:~$ cd Documents  
+username@bash:~$ pwd  
+/home/username/Documents
+``` 
+In the last command we used **cd** to move to the *Documents* directory, which is a subdirectory of our previous directory (*/home/username*). In this case we have typed a *relative* path to inform we wanted to move to the target directory. Another possibility could have been to inform the *absolute* path to the directory, i.e, the complete path to it:  
+```console  
+username@bash:~$ cd /home/username/Documents
+username@bash:~$ pwd  
+/home/username/Documents
+``` 
+If you want to go back to the previous (parent) directory, you don't need to specify its complete path. The shortcut **..** will do that for you:  
+```console  
+username@bash:~$ cd ..  
+username@bash:~$ pwd  
+/home/username
+```  
+You can even concatenate multiple **..**:  
+```console    
+username@bash:~$ cd ../..  
+username@bash:~$ pwd  
+/
+```  
+Now we are in the so called **root** directory. This is the top of the hierarchical structure of the system. All other directories are actually subdirectories of it.  
+
+Another possibly useful shortcut is **~**, which represents the home directory of your user:  
+```console  
+username@bash:~$ cd ~  
+username@bash:~$ pwd  
+/home/username
+```  
+
+Cool fact: the shortcuts **..** and **~** also work with other commands besides **cd**:  
+```console  
+username@bash:~$ ls ~  
+Documents public_html
+```
 
 
