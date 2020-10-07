@@ -4,7 +4,7 @@
 3. [Third Example](#third-example)
 4. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
 
-# Basic concepts
+# 1. Basic concepts <a name="basic-concepts"></a>
 
 ## 1.1 The terminal  
 The terminal, or command line, is an interface that allows you to interact with the system through text. It allows the user to run functions or programs, open and browse through directories, see the processes that are currently running, among other things.  
