@@ -5,8 +5,13 @@
     1.3 [Running commands](#running-commands)  
     1.4 [The shell](#the-shell)
 2. [Navigating the system](#navigating-the-system)  
-    2.1 [Where are we?](#where-are-we?)
-
+    2.1 [Where are we?](#where-are-we?)  
+    2.2 [What's in our current directory?](#what's-in-our-current-directory?)  
+    2.3 [Moving around](#moving-around)  
+    2.4 [Shortcuts](#shortcuts)  
+    2.5 [The tab completion trick](#the-tab-completion-trick)
+3. [File manipulation](#file-manipulation)  
+[Additional references](#additional-references)
 
 # 1. Basic concepts <a name="basic-concepts"></a>  
 ## 1.1 The terminal <a name="the-terminal"></a> 
