@@ -1,7 +1,9 @@
-# The terminal  
+# 1. Basic concepts
+
+## 1.1 The terminal  
 The terminal, or command line, is an interface that allows you to interact with the system through text. It allows the user to run functions or programs, open and browse through directories, see the processes that are currently running, among other things.  
 
-# The prompt 
+## 1.2 The prompt 
 When you open the terminal, you will see something that looks like this (the exactly text may change depending on the system you are using, but they should all look similar):  
 
 ```console  
@@ -10,7 +12,7 @@ user@bash:~$
 
 This is called a *prompt* and it means the terminal is ready for you to execute a command.  
 
-# Running commands  
+## 1.3 Running commands  
 When running a command, typically the command itself is the first thing you will type. After that you will type the arguments, which are the input information that will be fed into the command. Some commands also offer options to change its default behaviour. They are usually encoded by a dash (-) and placed before the arguments.  
 
 Let's check a real example:  
@@ -31,7 +33,8 @@ Lines 2-4 show the output of the command. Don't worry about understanding it now
 
 Finally, line 5 presents the user with the prompt again. That means the command execution is done and the terminal is ready to run another command.  
 
-# The shell  
-Whenever we run a command in the terminal, the command is processed by a program called *shell*, which will interpret the command and send back the output to the terminal. There are various shells available but the most common one is called *bash*, which stands for Bourne again shell. Bash is the most popular flavour of shell in Linux systems, and it also is the default shell on macOS.  
+## 1.4 The shell  
+Whenever we run a command in the terminal, the command is processed by a program called *shell*, which will interpret the command and send back the output to the terminal. There are various shells available but the most common one is called *bash*, which stands for Bourne again shell. Bash is the most popular flavour of shell in Linux systems, and it also is the default shell on macOS. Over our course it is the shell we will be using.    
 
+# 2. Moving around the system  
 
