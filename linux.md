@@ -1,15 +1,16 @@
 # Table of contents  
-1. [Basic concepts](#basic-concepts)
+1. [Basic concepts](#basic-concepts)  
+    1.1 [The terminal](#the-terminal)  
+    1.2 [The prompt](#the-prompt)
 2. [Navigating the system](#navigating-the-system)
-3. [Third Example](#third-example)
-4. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
+
 
 # 1. Basic concepts <a name="basic-concepts"></a>
 
-## 1.1 The terminal  
+## 1.1 The terminal <a name="the-terminal"></a> 
 The terminal, or command line, is an interface that allows you to interact with the system through text. It allows the user to run functions or programs, open and browse through directories, see the processes that are currently running, among other things.  
 
-## 1.2 The prompt 
+## 1.2 The prompt <a name="the-prompt"></a> 
 When you open the terminal, you will see something that looks like this (the exactly text may change depending on the system you are using, but they should all look similar):  
 
 ```console  
