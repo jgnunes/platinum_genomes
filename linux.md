@@ -129,6 +129,9 @@ Typing out long paths can be tedious and slow, without mentioning the chances of
 
 The idea is that whenever you start typing a path, if you hit the Tab key on your keyboard the command line will invoke an autocompletion action. It nothing happens, it means there are several possibilities for autocompletion. In that case you should hit Tab again to show all the possibilites, continue typing and then hit Tab again to continue the autocompletion process. Try it yourself to seed the power of tab completion!
 
-# 3. File manipulation <a name="file-manipulation"></a>
+# 3. File manipulation <a name="file-manipulation"></a>  
+
+# Additional references  
+This tutorial was inspired by the great Ryan Chadwick's webpage on [Linux](https://ryanstutorials.net/linuxtutorial/). If you want to deepen your understanding on Linux, I highly recommend you to browse through Ryan's tutorial, which includes exercises and some other interesting topics not coverede here for limitation of time.
 
 
