@@ -18,11 +18,11 @@ When running a command, typically the command itself is the first thing you will
 Let's check a real example:  
 
 ```console
-user@bash:~$ ls -l /home/user  
+username@bash:~$ ls -l /home/username  
 total 2  
-drwxr-xr-x 18 ryan users 4096 Feb 17 09:12 Documents
-drwxr-xr-x  2 ryan users 4096 May 05 17:25 public_html  
-user@bash:~$
+drwxr-xr-x 18 username users 4096 Feb 17 09:12 Documents
+drwxr-xr-x  2 username users 4096 May 05 17:25 public_html  
+username@bash:~$
 ```  
 
 The first line is the command execution. Here we are running the command **ls**, which lists all files and directories in the present working directory. This is probably one of the commands you will use the most, and we will discuss it in more detail later.  
@@ -36,5 +36,46 @@ Finally, line 5 presents the user with the prompt again. That means the command 
 ## 1.4 The shell  
 Whenever we run a command in the terminal, the command is processed by a program called *shell*, which will interpret the command and send back the output to the terminal. There are various shells available but the most common one is called *bash*, which stands for Bourne again shell. Bash is the most popular flavour of shell in Linux systems, and it also is the default shell on macOS. Over our course it is the shell we will be using.    
 
-# 2. Moving around the system  
+# 2. Navigating the system  
+## 2.1 Where are we?  
+The command **pwd** stands for *Print Working Directory* and it will print the complete path to our current directory:  
+```console  
+username@bash:~$ pwd  
+/home/username
+```  
+
+## 2.2 What's in our current directory?  
+The command **ls** will print all files and folders located in our current directory:  
+```console  
+username@bash:~$ ls  
+Documents public_html
+```  
+If we want to print the content of a directory other than our current one, we need to give its path as an argument to ls:  
+```  
+username@bash:~$ ls /etc  
+a2ps.cfg aliases alsa.d 
+```  
+If we want ls to print more information, we can use some of its options (remember, they will be preceded by a dash (-) symbol). For instance, option **-l** can print information on user permissions over that object, as well as its size and last modification date:  
+```console  
+username@bash:~$ ls -l /etc
+-rwxr-xr-x  2 root root 1000000 Mar 23 13:34 a2ps.cfg
+-rwxr-xr-x 18 root root 78 Feb 17 09:12 aliases
+drwxr-xr-x  2 ryan users 4096 May 05 17:25 alsa.d
+```  
+Our last command has printed file sizes in bytes. For most cases we will want that in a human-readable format, what can be achieved by adding the **-h** option:  
+```console  
+username@bash:~$ ls -lh /etc
+-rwxr-xr-x  2 root root 1M Mar 23 13:34 a2ps.cfg
+-rwxr-xr-x 18 root root 78 Feb 17 09:12 aliases
+drwxr-xr-x  2 ryan users 4,1K May 05 17:25 alsa.d
+```  
+
+If you want more information on the **ls** command (and any other command of the system), use the command **man**:  
+```console  
+username@bash:~$ man ls
+```  
+The command will print pretty useful information, such as how to execute the command, what are the options available and the arguments required (if any). 
+
+## 2.3 Moving around  
+
 
