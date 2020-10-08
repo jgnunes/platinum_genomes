@@ -252,7 +252,7 @@ username@bash:~$ ls
 Documents empty_file linux_tutorial public_html_renamed
 ``` 
 
-### Attention  
+### Attention :grey_exclamation: 
 Since Linux command line does **not** have an **undo** option, be **careful** when performing **destructive** actions. 
 
 # Additional references <a name="additional-references"></a>  
