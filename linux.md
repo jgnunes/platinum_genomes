@@ -11,6 +11,14 @@
     2.4 [Shortcuts](#shortcuts)  
     2.5 [The tab completion trick](#the-tab-completion-trick)
 3. [File manipulation](#file-manipulation)  
+    3.1 [Creating a directory]("#creating-a-directory")  
+    3.2 [Creating a file]("#creating-a-file")  
+    3.3 [Copying a file]("#copying-a-file")  
+    3.4 [Copying a directory]("#copying-a-directory")  
+    3.5 [Moving files and directories]("#moving-files-and-directories")  
+    3.6 [Renaming files and directories]("#renaming-files-and-directories")  
+    3.7 [Removing a file]("#removing-a-file")  
+    3.8 [Removing a directory]("#removing-a-directory")    
 [Additional references](#additional-references)
 
 # 1. Basic concepts <a name="basic-concepts"></a>  
@@ -249,5 +257,3 @@ Since Linux command line does **not** have an **undo** option, be **careful** wh
 
 # Additional references <a name="additional-references"></a>  
 This tutorial was inspired by the great [Ryan Chadwick's webpage](https://ryanstutorials.net/linuxtutorial/) on Linux. If you want to deepen your understanding on Linux, I highly recommend you to browse through Ryan's tutorial, which includes exercises and some other interesting topics not coverede here due to time constraints.
-
-
