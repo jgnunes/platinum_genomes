@@ -1,12 +1,6 @@
 # Goal  
 To remove overlaps and false duplications from an assembly.  
 
-# References  
-* [Github repository](https://github.com/dfguan/purge_dups)  
-* [Paper](https://academic.oup.com/bioinformatics/article/36/9/2896/5714742)
-
-# Software testing  
-
 # Commands  
 
 ## 1. purge_dups installation  
@@ -180,3 +174,7 @@ The KMC plot for the purged assembly exhibits significantly different pattern. F
 ## 15. Re-run all *purge_dups* steps with *hap.fa* as input to get a decent haplotig set
 
 It is good practice to run one more *purge_dups* execution for the haplotig assembly (the file *hap.fa*) in order to get a decent haplotig set. That means re-running all the steps replacing the original assembly (*20200120.hicanu.unpurged.fasta*) by *hap.fa*. This is a [recommendation](https://github.com/dfguan/purge_dups#step-4-merge-hapfa-and-hap_asm-and-redo-the-above-steps-to-get-a-decent-haplotig-set) from *purge_dups* developer, Dengfeng Guan, however due to time constraints we will not execute it in this tutorial.  
+
+# References  
+* [Github repository](https://github.com/dfguan/purge_dups)  
+* [Paper](https://academic.oup.com/bioinformatics/article/36/9/2896/5714742)
