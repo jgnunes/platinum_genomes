@@ -169,7 +169,13 @@ bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual/
 bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual/kmc $ kmc_tools analyze m64016_191223_193312.ccs 20200120.hicanu.unpurged 20200120.hicanu.unpurged.matrix  
 bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual/kmc $ python ~/anaconda3/envs/purge_dups/KMC/spectra.py 20200120.hicanu.unpurged.matrix 20200120.hicanu.unpurged.png
 ```  
-The KMC plot for the original assembly exhibits 
+The KMC plot for the original assembly exhibits a 1X representing k-mers that were only found in one place of the genome, likely representing heterozygous regions. The 2X represents k-mers found in two places of the genome, representing those sequences that are equal in both haplotypes (and therefore present in two copies in our diploid assembly). There are even k-mers found three times in the assembly (3X), which may represent erroneous duplications present in the assembly.  
+
+<img src="https://user-images.githubusercontent.com/22843614/95625348-bb3d0f80-0a4e-11eb-8195-d4db0c26edb8.png" width=70%></img>  
+
+The KMC plot for the purged assembly exhibits significantly different pattern. First there is no 2X curve, indicating that our assembly was properly de-duplicated by *purge_dups*. Since *purge_dups* has removed one of the haplotype copies from the assembly, when we try to map this purged sequence, we obviously cannot find it in the assembly any longer, what explains the 0X curve. Regarding the 1X curve, it has two peaks: the first one has lower coverage and represents heterozygous regions. The decrease in the coverage is explained by the fact that the divergent variants that were purged from the assembly obviously did not map to it. The second peak however represents homozygous regions that had twice the coverage of the heterozygous ones since all their chromosome copies will map perfectly to the assembly:  
+
+<img src="https://user-images.githubusercontent.com/22843614/95626591-f17b8e80-0a50-11eb-8aca-c62c40f47838.png" width=70%></img> 
 
 ## 15. Re-run all *purge_dups* steps with *hap.fa* as input to get a decent haplotig set
 
