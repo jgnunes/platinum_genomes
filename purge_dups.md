@@ -143,11 +143,22 @@ bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual 
 ```  
 
 ## 14. Validating the purged assembly  
-We can use different tools to validate the final purged assembly in order to check if it is clean enough or even if it was overpurged. Our choice here is going to be KMC, which does a k-mer analysis of our final assembly using short-reads data. 
+We can use different tools to validate the final purged assembly in order to check if it is clean enough or even if it was overpurged. Our choice here is going to be [KMC](https://github.com/dfguan/KMC), which does a k-mer analysis of our final assembly using short-reads data. 
+
+First let's download some short-read data from *Pieris rapae* available [here](https://github.com/darwintreeoflife/darwintreeoflife.data/blob/master/species/Pieris_rapae/Pieris_rapae.md) after 10X sequencing. Due to lack of space on our BioMA server, let's try to run KMC using only the first (file: 37ed546638bbb7fe35a9e9d3f268b014-339) of the 10X datasets. 
+
+However that file is in CRAM format, and KMC requires a FASTQ file. According to [this](https://github.com/enasequence/cramtools/issues/56) thread on github, we can convert a CRAM file to the FASTQ format in two steps:  
+
+```console    
+cramtools bam -I 32955_5#5.cram -O 32955_5#5.bam
+picard SamToFastq I=32955_5#5.bam F=32955_5#5.R1.fastq F2=32955_5#5.R2.fastq
+```
+
+The BAM file has already been created (/home/bioma/joao_ferreira/platinum_genome_training/32955_5#5.bam), however we do not have space on BioMA's server to create the FASTQ files (R1 and R2). 
 
 TO FINISH ONCE WE HAVE FREED UP SPACE ON BIOMA SERVER
 
 ## 15. Re-run all *purge_dups* steps with *hap.fa* as input to get a decent haplotig set
 
-TO FINISH ONCE WE HAVE FREED UP SPACE ON BIOMA SERVER
+TO RUN ONCE WE HAVE FREED UP SPACE ON BIOMA SERVER
 
