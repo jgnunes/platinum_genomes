@@ -77,7 +77,7 @@ bioma@bioma-XPS-8300:~/joao_ferreira/platinum_genome_training/purge_dups/manual$
 
 <img src="https://user-images.githubusercontent.com/22843614/94845666-623dfd80-03f6-11eb-8850-6e175bea773b.png" width=90%></img>  
 
-In an assembly that has both haploid and diploid sequences, we should have a peak with higher coverage and another peak with approximately 50% read-depth as the first, representing the diploid sequences (since half of the reads will map to one haplotype and the other half to the other haplotype). However, our plot only seems to have one peak, and the question that remains is if this peak represents an assembly that is entirely diploid or entirenly haploid. This is not very relevant for us to place the low and high cutoffs, but it is for the middle cutoff, since it should separate the haploid and diploid depths. In other words, the middle cutoff should be placed so that what is to its left represents the diploid peak, that has an 0.5X depth, and what is to its right represents the haploid peak, that has an 1.0X depth. 
+In an assembly that has both haploid and diploid sequences, we should have a peak with higher coverage and another peak with approximately 50% read-depth as the first, representing the diploid sequences (since half of the reads will map to one haplotype and the other half to the other haplotype). However, our plot only seems to have one peak, and the question that remains is if this peak represents an assembly that is entirely diploid or entirenly haploid. This is not very relevant for us to place the low and high cutoffs, but it is for the middle cutoff, since it should separate the haploid and diploid depths. In other words, the middle cutoff should be placed so that what is to its left represents the diploid peak, that has an 0.5X depth, and what is to its right represents the haploid peak, that has an 1.0X depth. This is confirmed by [this github answer](https://github.com/dfguan/purge_dups/issues/27), where the developer of *purge_dups* gives similar interpretation to the same situation.  
 
 One way to decide if our only peak represents the diploid or haploid peak is to compare its coverage with the expected coverage, by dividing the number of bases that were sequenced by the size of *Pieris rapae*'s genome. We can check the number of sequenced bases by inspecting the PacBio FASTA sequence with the command:  
 
@@ -143,22 +143,34 @@ bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual 
 ```  
 
 ## 14. Validating the purged assembly  
-We can use different tools to validate the final purged assembly in order to check if it is clean enough or even if it was overpurged. Our choice here is going to be [KMC](https://github.com/dfguan/KMC), which does a k-mer analysis of our final assembly using short-reads data. 
+We can use different tools to validate the final purged assembly in order to check if it is clean enough or even if it was overpurged. Our choice here is going to be [KMC](https://github.com/dfguan/KMC), which does a k-mer analysis of our final assembly.  
 
-First let's download some short-read data from *Pieris rapae* available [here](https://github.com/darwintreeoflife/darwintreeoflife.data/blob/master/species/Pieris_rapae/Pieris_rapae.md) after 10X sequencing. Due to lack of space on our BioMA server, let's try to run KMC using only the first (file: 37ed546638bbb7fe35a9e9d3f268b014-339) of the 10X datasets. 
-
-However that file is in CRAM format, and KMC requires a FASTQ file. According to [this](https://github.com/enasequence/cramtools/issues/56) thread on github, we can convert a CRAM file to the FASTQ format in two steps:  
-
+The first step is to create a folder where we will store the KMC results:  
 ```console    
-cramtools bam -I 32955_5#5.cram -O 32955_5#5.bam
-picard SamToFastq I=32955_5#5.bam F=32955_5#5.R1.fastq F2=32955_5#5.R2.fastq
+bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual $ mkdir kmc 
+```  
+Then inside that folder we will create a temporary file that will be used for KMC to store temporary files necessary for KMC calculations:  
+```console    
+bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual $ cd kmc  
+bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual/kmc $ mkdir tmp
 ```
+Then we will finally run the KMC analysis:
+```console    
+bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual/kmc $ kmc -k21 -ci0 -fm -sm ../purged.fa purged tmp  
+bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual/kmc $ kmc -k21 -ci0 -sm ../../../input/m64016_191223_193312.ccs.fastq.gz m64016_191223_193312.ccs tmp
+bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual/kmc $ kmc_tools analyze m64016_191223_193312.ccs purged purged.matrix  
+bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual/kmc $ ~/anaconda3/envs/purge_dups/KMC/spectra.py purged.matrix purged.png
+```  
+In the first command we calculated the k-mer profile for the *purged.fa* assembly, which was also calculated for the input *Hi-Fi* reads in the second command. In the third command we analyze the k-mer profiles of one against the other, and finally in the last command we use a python script to plot the analysis, generating a final plot image in PNG format.  
 
-The BAM file has already been created (/home/bioma/joao_ferreira/platinum_genome_training/32955_5#5.bam), however we do not have space on BioMA's server to create the FASTQ files (R1 and R2). 
-
-TO FINISH ONCE WE HAVE FREED UP SPACE ON BIOMA SERVER
+It will also be useful to plot a KMC analysis for the original assembly that was purged (*20200120.hicanu.unpurged.fasta*), in order to evaluate what was the actual work done with *purge_dups*:  
+```console  
+bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual/kmc $ kmc -k21 -ci0 -fm -sm ../../../input/20200120.hicanu.unpurged.fasta 20200120.hicanu.unpurged tmp
+bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual/kmc $ kmc_tools analyze m64016_191223_193312.ccs 20200120.hicanu.unpurged 20200120.hicanu.unpurged.matrix  
+bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual/kmc $ python ~/anaconda3/envs/purge_dups/KMC/spectra.py 20200120.hicanu.unpurged.matrix 20200120.hicanu.unpurged.png
+```  
+The KMC plot for the original assembly exhibits 
 
 ## 15. Re-run all *purge_dups* steps with *hap.fa* as input to get a decent haplotig set
 
-TO RUN ONCE WE HAVE FREED UP SPACE ON BIOMA SERVER
-
+It is good practice to run one more *purge_dups* execution for the haplotig assembly (the file *hap.fa*) in order to get a decent haplotig set. That means re-running all the steps replacing the original assembly (*20200120.hicanu.unpurged.fasta*) by *hap.fa*. This is a [recommendation](https://github.com/dfguan/purge_dups#step-4-merge-hapfa-and-hap_asm-and-redo-the-above-steps-to-get-a-decent-haplotig-set) from *purge_dups* developer, Dengfeng Guan, however due to time constraints we will not execute it in this tutorial.  
