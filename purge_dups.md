@@ -134,7 +134,20 @@ However, beware if the sequence headers of your original assembly FASTA file hav
 
 ```console  
 bioma@bioma-XPS-8300 ~/joao_ferreira/platinum_genome_training/purge_dups/manual $ /home/bioma/anaconda3/envs/purge_dups/purge_dups/bin/get_seqs dups.bed 20200120.hicanu.unpurged.split
-```
+```  
 
-# Linux commands  
+*get_seqs* execution has generated a *purged.fa* file of 245 MB and a *hap.fa* file of 257 MB, i.e, with comparable sizes. Since the assembly file that was processed by *purge_dups* is the result of artificially merging two different haploid assemblies, that should be expected.   
+
+```console  
+257M out  2 18:16 hap.fa
+```  
+
+## 14. Validating the purged assembly  
+We can use different tools to validate the final purged assembly in order to check if it is clean enough or even if it was overpurged. Our choice here is going to be KMC, which does a k-mer analysis of our final assembly using short-reads data. 
+
+TO FINISH ONCE WE HAVE FREED UP SPACE ON BIOMA SERVER
+
+## 15. Re-run all *purge_dups* steps with *hap.fa* as input to get a decent haplotig set
+
+TO FINISH ONCE WE HAVE FREED UP SPACE ON BIOMA SERVER
 
