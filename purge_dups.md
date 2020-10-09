@@ -1,5 +1,5 @@
 # Goal  
-To remove from an assembly overlaps and haplotigs caused by sequence divergence in heterozygous regions.  
+To remove overlaps and false duplications from an assembly.  
 
 # References  
 * [Github repository](https://github.com/dfguan/purge_dups)  
@@ -30,7 +30,7 @@ For this tutorial, we will be using the genome assembly of the butterfly species
 * [20200120.hicanu.purge.htig.fasta.gz](https://darwin.cog.sanger.ac.uk/insects/Pieris_rapae/ilPieRapa1/assemblies/working/20200120.hicanu.purge/20200120.hicanu.purge.htig.fasta.gz): the haplotigs, i.e., the variant forms of heterozygous regions represented in the primary assembly.  
 * [m64016_191223_193312.ccs.bam](https://darwin.cog.sanger.ac.uk/insects/Pieris_rapae/ilPieRapa1/genomic_data/pacbio/m64016_191223_193312.ccs.bam): file containing the raw HiFi reads. It's [compatible](https://pacbiofileformats.readthedocs.io/en/3.0/BAM.html) with the traditional BAM extension used for representing reads mapping, however in this case it represents only the raw reads (no mapping). According to [PacBio](https://www.pacb.com/wp-content/uploads/3_DavidAlexander_SmrtDevMeeting.pdf), it can be thought as a better FASTQ format. 
     
-## 3. Creating an artifially duplicated assembly  
+## 3. Creating an artificially duplicated assembly  
 * Since the original dataset has already had the duplicated regions purged, we first need to create an artificially duplicated assembly by merging the *primary assembly* and *haplotigs*: 
 
 ```console  
